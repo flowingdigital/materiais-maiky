@@ -1,120 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quanto dinheiro está parado na sua base de leads antigos — Maiky Miguel</title>
+<title>Quanto dinheiro está parado na sua base de leads antigos · Maiky Miguel</title>
+<meta name="description" content="A calculadora e o agente de IA para recuperar os leads parados no seu CRM. Por Maiky Miguel.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--azul:#0B3C8C;--laranja:#F26A1B;--cinza:#4A5568;--cinza2:#718096;--fundo:#F3F6FB;}
+  :root{
+    --azul:#0B3C8C; --azul-escuro:#082B66; --laranja:#F26A1B;
+    --cinza:#4A5568; --cinza-claro:#718096; --fundo:#FFFFFF; --fundo-2:#F3F6FB;
+    --verde:#1F8A4C; --amarelo:#F2B705; --vermelho:#C8372D; --linha:#DCE3EE;
+  }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--cinza);background:#fff;line-height:1.6}
-  .wrap{max-width:820px;margin:0 auto;padding:0 22px}
-  h1,h2,h3{font-family:"Plus Jakarta Sans",Inter,Arial,sans-serif;color:var(--azul);line-height:1.2}
-  .capa{background:var(--azul);color:#fff;padding:64px 0 52px}
-  .capa h1{color:#fff;font-size:2.3rem;margin:0 0 14px}
-  .capa h1 mark{background:var(--laranja);color:var(--azul);padding:0 8px;border-radius:4px}
-  .capa p{font-size:1.15rem;max-width:620px;margin:0;opacity:.95}
-  .capa .ass{margin-top:30px;font-size:.95rem;opacity:.9}
-  .capa .ass b{border-bottom:3px solid var(--laranja)}
-  section{padding:38px 0;border-bottom:1px solid #e3e8f0}
-  h2{font-size:1.5rem;margin:0 0 14px}
-  h2 .n{display:inline-block;background:var(--laranja);color:var(--azul);border-radius:50%;width:34px;height:34px;text-align:center;line-height:34px;font-size:1rem;margin-right:10px}
-  .passos{display:grid;gap:12px}
-  .passo{background:var(--fundo);border-radius:10px;padding:14px 18px}
-  .passo b{color:var(--azul)}
-  .calc{background:var(--fundo);border-radius:14px;padding:22px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  label{display:block;font-size:.88rem;font-weight:600;color:var(--azul);margin-bottom:4px}
-  input[type=number]{width:100%;padding:11px;border:1.5px solid #cbd5e0;border-radius:8px;font-size:1rem}
-  .dica{font-size:.8rem;color:var(--cinza2);margin-top:3px}
-  .res{margin-top:18px;background:#fff;border:2px solid var(--laranja);border-radius:12px;padding:18px}
-  .res .linha{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #e2e8f0}
-  .res .total{font-size:1.5rem;color:var(--azul);font-weight:800;border:none;padding-top:12px}
-  .res .total span:last-child{color:var(--laranja)}
-  .rotulo{font-size:.8rem;color:var(--cinza2);font-style:italic}
-  .criterio{border-left:5px solid var(--laranja);background:var(--fundo);padding:12px 16px;margin:12px 0;border-radius:0 10px 10px 0}
-  .criterio b{color:var(--azul)}
-  pre{white-space:pre-wrap;background:#0f1f3d;color:#eaf0fb;padding:18px;border-radius:12px;font-size:.88rem;line-height:1.55;position:relative}
-  .msg{background:#E7F5EC;border-radius:12px;padding:14px 18px;color:#22402e}
-  button.copiar{background:var(--azul);color:#fff;border:0;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer;margin-top:8px}
-  .aviso{background:#FFF7E0;border-left:5px solid #F2B705;padding:12px 16px;border-radius:0 10px 10px 0;margin:14px 0}
-  table{width:100%;border-collapse:collapse;font-size:.92rem}
-  td,th{padding:8px 10px;border-bottom:1px solid #e2e8f0;text-align:left}
-  th{color:var(--azul)}
-  .cta{background:var(--azul);color:#fff;border-radius:16px;padding:34px 28px;margin:34px 0;text-align:center}
-  .cta h2{color:#fff}
-  .cta p{max-width:600px;margin:0 auto 20px;font-size:1.05rem}
-  .btn{display:inline-block;background:var(--laranja);color:var(--azul);font-weight:800;text-decoration:none;padding:16px 30px;border-radius:10px;font-size:1.1rem}
-  footer{padding:24px 0 40px;font-size:.85rem;color:var(--cinza2)}
-  footer b{border-bottom:3px solid var(--laranja);color:var(--azul)}
-  @media(max-width:600px){.grid{grid-template-columns:1fr}.capa h1{font-size:1.7rem}}
-  @media print{.btn,button.copiar{display:none}.cta{background:#fff;color:#000;border:2px solid var(--azul)}.cta h2,.cta p{color:#000}}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--fundo);color:var(--cinza);font:400 17px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:820px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:"Plus Jakarta Sans",Inter,system-ui,sans-serif;color:var(--azul);line-height:1.15;margin:0}
+  h1{font-size:clamp(32px,6vw,52px);font-weight:800;letter-spacing:-.02em}
+  h2{font-size:clamp(24px,4vw,32px);font-weight:800;margin-bottom:16px}
+  h3{font-size:20px;font-weight:700;margin-bottom:8px}
+  p{margin:0 0 14px}
+  strong{color:var(--azul-escuro)}
+  .mark{background:linear-gradient(transparent 55%, rgba(242,106,27,.35) 55%);padding:0 2px}
+  .eyebrow{font:600 13px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--laranja);margin-bottom:14px}
+
+  /* capa */
+  .capa{padding:64px 0 48px;border-bottom:1px solid var(--linha)}
+  .capa .promessa{font-size:20px;color:var(--cinza);margin-top:18px;max-width:640px}
+  .tempo{display:inline-block;margin-top:20px;background:var(--fundo-2);color:var(--azul);font-weight:600;border-radius:999px;padding:8px 16px;font-size:15px}
+
+  section{padding:48px 0;border-bottom:1px solid var(--linha)}
+  .passos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;counter-reset:p}
+  .passo{background:var(--fundo-2);border-radius:14px;padding:20px}
+  .passo::before{counter-increment:p;content:counter(p);display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--laranja);color:#fff;font:800 16px "Plus Jakarta Sans",sans-serif;margin-bottom:10px}
+
+  .tag{display:inline-block;font-size:13px;font-weight:600;color:var(--azul);background:var(--fundo-2);border-radius:6px;padding:3px 10px;margin-bottom:10px}
+  .bloco{background:var(--fundo-2);border-left:4px solid var(--laranja);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0}
+  .bloco p:last-child{margin:0}
+  ol.how,ul.how{margin:8px 0 0;padding-left:22px}
+  ol.how li,ul.how li{margin-bottom:8px}
+  .aviso{font-size:15px;color:var(--cinza-claro)}
+
+  /* critérios */
+  .degrau{display:grid;grid-template-columns:72px 1fr;gap:20px;padding:24px 0;border-top:1px dashed var(--linha)}
+  .degrau:first-of-type{border-top:0}
+  .num{width:72px;height:72px;border-radius:16px;background:var(--azul);color:#fff;display:grid;place-items:center;font:800 32px "Plus Jakarta Sans",sans-serif}
+  .degrau.ult .num{background:var(--laranja)}
+
+  /* calculadora */
+  .calc{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:18px 0}
+  .calc label{font-size:14px;font-weight:600;color:var(--azul)}
+  .calc input{width:100%;margin-top:6px;padding:12px;border:1px solid var(--linha);border-radius:10px;font:500 17px Inter,sans-serif;color:var(--azul-escuro)}
+  .calc input:focus{outline:2px solid var(--laranja);border-color:transparent}
+  .res{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+  .card{background:var(--fundo-2);border-radius:14px;padding:16px}
+  .card .k{font-size:13px;color:var(--cinza-claro)}
+  .card .v{font:800 26px "Plus Jakarta Sans",sans-serif;color:var(--azul)}
+  .card.destaque{background:var(--azul)} .card.destaque .k{color:#C9D6EE} .card.destaque .v{color:#fff}
+  .leitura{margin-top:16px}
+
+  table{width:100%;border-collapse:collapse;font-size:16px}
+  .tbl{overflow-x:auto}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--linha)}
+  th{color:var(--azul);font-weight:600;background:var(--fundo-2)}
+  td.n{text-align:right;font-variant-numeric:tabular-nums}
+
+  .proximo{background:var(--azul);color:#fff;border-radius:18px;padding:32px;margin:48px 0}
+  .proximo h2{color:#fff}
+  .proximo p{color:#DCE6F7;margin:0}
+
+  .prompt{border:1px solid var(--linha);border-radius:14px;padding:18px;margin:16px 0}
+  .prompt pre{white-space:pre-wrap;word-wrap:break-word;background:var(--fundo-2);border-radius:10px;padding:14px;margin:10px 0 12px;font:400 15px/1.55 Inter,system-ui,sans-serif;color:var(--azul-escuro)}
+  .btn{display:inline-block;background:var(--laranja);color:var(--azul-escuro);font:700 15px "Plus Jakarta Sans",sans-serif;border:0;border-radius:10px;padding:11px 18px;cursor:pointer;text-decoration:none}
+  .btn:hover{filter:brightness(.95)} .btn.grande{font-size:17px;padding:14px 24px}
+  footer{padding:28px 0 48px;font-size:14px;color:var(--cinza-claro)}
+  .assina{font:700 16px "Plus Jakarta Sans",sans-serif;color:var(--azul);border-bottom:3px solid var(--laranja);padding-bottom:2px}
+  @media (max-width:520px){.degrau{grid-template-columns:1fr}.num{width:56px;height:56px;font-size:26px}.proximo{padding:24px}}
 </style>
 </head>
 <body>
 
-<header class="capa"><div class="wrap">
-  <h1>Quanto dinheiro está <mark>parado</mark> na sua base de leads antigos?</h1>
-  <p>Faça a conta em 10 minutos e monte, junto com o Claude, um agente que prepara a mensagem de retomada de cada contato.</p>
-  <div class="ass"><b>Maiky Miguel</b></div>
-</div></header>
+<header class="capa">
+  <div class="wrap">
+    <div class="eyebrow">Material gratuito · Maiky Miguel</div>
+    <h1>Quanto dinheiro está <span class="mark">parado</span> na sua base de leads antigos?</h1>
+    <p class="promessa">Faça a conta em 10 minutos e monte, com o Claude, um agente de IA que escolhe quem chamar, escreve a mensagem de cada contato e roda a rotina toda semana.</p>
+    <span class="tempo">Leitura de 10 minutos · aplicação na mesma semana</span>
+  </div>
+</header>
 
 <main class="wrap">
 
-<section>
-  <h2>Como usar em 3 passos</h2>
-  <div class="passos">
-    <div class="passo"><b>1. Faça a conta</b> na calculadora abaixo, com os seus números (ou chute honesto).</div>
-    <div class="passo"><b>2. Escolha quem chamar primeiro</b> com os 3 critérios. Comece com 50 contatos, não com a base inteira.</div>
-    <div class="passo"><b>3. Monte o agente no Claude</b> (5 minutos, é só copiar e colar) e deixe a mensagem de cada contato pronta para o seu time revisar e enviar.</div>
-  </div>
-</section>
+  <section>
+    <h2>Como usar em 3 passos</h2>
+    <div class="passos">
+      <div class="passo"><h3>Faça a conta</h3><p>Use a calculadora com os seus números (ou um chute honesto) e veja quanto dinheiro está parado.</p></div>
+      <div class="passo"><h3>Escolha quem chamar</h3><p>Use os 3 critérios e separe os primeiros 50 contatos. Não comece com a base inteira.</p></div>
+      <div class="passo"><h3>Monte o agente</h3><p>Copie os comandos prontos, cole no Claude e deixe a rotina semanal funcionando.</p></div>
+    </div>
+  </section>
 
-<section>
-  <h2><span class="n">1</span>A calculadora: quanto está parado</h2>
-  <div class="calc">
-    <div class="grid">
-      <div><label for="base">Leads antigos na base</label><input id="base" type="number" value="2000" min="0"><div class="dica">Contatos que pediram orçamento, sumiram ou foram esquecidos.</div></div>
-      <div><label for="volta">% que volta a conversar</label><input id="volta" type="number" value="1" min="0" step="0.1"><div class="dica">Seja conservador. 1% já muda a conta.</div></div>
-      <div><label for="fecha">De cada 100 conversas, quantas viram venda</label><input id="fecha" type="number" value="10" min="0"><div class="dica">Use a taxa do seu comercial hoje.</div></div>
-      <div><label for="ticket">Valor médio de uma venda (R$)</label><input id="ticket" type="number" value="5000" min="0"></div>
+  <section id="conta">
+    <div class="eyebrow">Item 1</div>
+    <h2>A calculadora: quanto está parado</h2>
+    <p>Preencha com os seus números. Os valores que já aparecem são de exemplo.</p>
+    <div class="calc">
+      <label>Leads antigos na base<input id="base" type="number" min="0" step="1" value="2000"></label>
+      <label>% que volta a conversar<input id="volta" type="number" min="0" step="any" value="1"></label>
+      <label>De cada 100 conversas, quantas viram venda<input id="fecha" type="number" min="0" step="any" value="10"></label>
+      <label>Valor médio de uma venda (R$)<input id="ticket" type="number" min="0" step="any" value="5000"></label>
     </div>
     <div class="res">
-      <div class="linha"><span>Conversas reabertas</span><span id="r1">—</span></div>
-      <div class="linha"><span>Vendas possíveis</span><span id="r2">—</span></div>
-      <div class="linha total"><span>Dinheiro parado</span><span id="r3">—</span></div>
-      <div class="rotulo" style="margin-top:8px">Valores iniciais são de exemplo (cenário ilustrativo). Troque pelos seus.</div>
+      <div class="card"><div class="k">Conversas reabertas</div><div class="v" id="r1">–</div></div>
+      <div class="card"><div class="k">Vendas possíveis</div><div class="v" id="r2">–</div></div>
+      <div class="card destaque"><div class="k">Dinheiro parado</div><div class="v" id="r3">–</div></div>
     </div>
-  </div>
-  <p><b>Exemplo preenchido (cenário ilustrativo, valores de exemplo):</b> base de 2.000 leads antigos. Se só 1% voltar a conversar, são 20 conversas. Se uma a cada dez virar venda de R$ 5.000, são 2 vendas: R$ 10.000 que estavam parados. Sem comprar mais lead, sem aumentar a verba.</p>
-</section>
+    <p class="leitura" id="leitura"></p>
 
-<section>
-  <h2><span class="n">2</span>3 critérios para escolher quem chamar primeiro</h2>
-  <div class="criterio"><b>Critério 1 · Chegou perto de comprar.</b> Pediu orçamento, recebeu proposta ou fez reunião. Esses vêm antes de quem só baixou um material.</div>
-  <div class="criterio"><b>Critério 2 · Tem motivo conhecido para ter parado.</b> "Estava sem verba", "mês ruim", "ia falar com o sócio". Um motivo que pode ter mudado é uma porta aberta.</div>
-  <div class="criterio"><b>Critério 3 · Contato mais recente primeiro.</b> Entre dois iguais, chame o que falou com vocês há menos tempo. A memória ainda está viva.</div>
-  <p>Ordene a planilha do seu CRM por esses 3 critérios e separe <b>os primeiros 50</b>. Só avance para os próximos quando esses 50 tiverem sido chamados.</p>
-</section>
+    <h3 style="margin-top:32px">Exemplo preenchido</h3>
+    <p class="aviso">Cenário ilustrativo, valores de exemplo. São os números que já aparecem na calculadora.</p>
+    <div class="tbl"><table>
+      <tr><th>Linha</th><th class="n">Valor</th></tr>
+      <tr><td>Leads antigos na base</td><td class="n">2.000</td></tr>
+      <tr><td>Voltam a conversar (1%)</td><td class="n">20 conversas</td></tr>
+      <tr><td>Viram venda (1 a cada 10)</td><td class="n">2 vendas</td></tr>
+      <tr><td>Valor de cada venda</td><td class="n">R$ 5.000</td></tr>
+      <tr><td><strong>Dinheiro que estava parado</strong></td><td class="n"><strong>R$ 10.000</strong></td></tr>
+    </table></div>
+    <p style="margin-top:14px">Leitura: sem comprar mais lead e sem aumentar a verba, só olhar para a base que já existe já muda o resultado do mês.</p>
+  </section>
 
-<section>
-  <h2><span class="n">3</span>Uma mensagem curta para reabrir a conversa sem parecer cobrança</h2>
-  <div class="msg" id="msg1">Oi, [nome]. Faz um tempo que conversamos sobre [assunto]. Fiquei pensando: isso ainda é uma prioridade aí na [empresa], ou mudou alguma coisa? Se não for o momento, sem problema, me diga e eu fecho o assunto por aqui.</div>
-  <button class="copiar" onclick="copiar('msg1',this)">Copiar mensagem</button>
-  <p>Regras: uma pergunta só, dê espaço para a pessoa dizer não, e nada de "só passando para lembrar".</p>
-</section>
+  <section id="criterios">
+    <div class="eyebrow">Item 2</div>
+    <h2>3 critérios para escolher quem chamar primeiro</h2>
+    <div class="degrau">
+      <div class="num">1</div>
+      <div><span class="tag">Chegou perto de comprar</span>
+        <h3>Quem pediu orçamento, proposta ou reunião</h3>
+        <p>Esses vêm antes de quem só baixou um material. Quem já chegou perto de decidir está mais perto de decidir de novo.</p></div>
+    </div>
+    <div class="degrau">
+      <div class="num">2</div>
+      <div><span class="tag">Motivo conhecido</span>
+        <h3>Quem parou por um motivo que pode ter mudado</h3>
+        <p>"Estava sem verba", "mês ruim", "ia falar com o sócio". Um motivo que pode ter passado é uma porta aberta.</p></div>
+    </div>
+    <div class="degrau ult">
+      <div class="num">3</div>
+      <div><span class="tag">Contato mais recente</span>
+        <h3>Entre dois iguais, o que falou com vocês há menos tempo</h3>
+        <p>A memória ainda está viva, e a conversa recomeça de onde parou.</p></div>
+    </div>
+    <div class="bloco"><p><strong>Na prática:</strong> ordene a lista do seu CRM por esses 3 critérios e separe os <strong>primeiros 50</strong>. Só avance para os próximos quando esses 50 tiverem sido chamados.</p></div>
+  </section>
 
-<section>
-  <h2><span class="n">4</span>O agente de IA que recupera a base: automação completa</h2>
-  <p>Você não precisa programar nada. O agente é um conjunto de instruções que você cola numa conversa do Claude. Ele lê a sua lista de contatos antigos, escolhe quem chamar primeiro, escreve a mensagem de cada um e, no final, monta com você a rotina para isso acontecer toda semana, sem depender de ninguém lembrar.</p>
+  <section id="mensagem">
+    <div class="eyebrow">Item 3</div>
+    <h2>Uma mensagem curta para reabrir a conversa sem parecer cobrança</h2>
+    <div class="prompt">
+      <span class="tag">Mensagem de retomada</span>
+      <pre>Oi, [nome]. Faz um tempo que conversamos sobre [assunto]. Fiquei pensando: isso ainda é uma prioridade aí na [empresa], ou mudou alguma coisa? Se não for o momento, sem problema, me diga e eu fecho o assunto por aqui.</pre>
+      <button class="btn copiar" type="button">Copiar mensagem</button>
+    </div>
+    <p class="aviso"><strong>Regras:</strong> uma pergunta só, dê espaço para a pessoa dizer não, e nada de "só passando para lembrar".</p>
+  </section>
 
-  <h3>Passo 1 · Deixe a sua lista em uma planilha do Excel</h3>
-  <p>Uma linha por contato, com estas colunas: <b>nome · empresa · último assunto · quanto tempo faz que falaram · motivo de ter parado</b>. Comece com 50 contatos.</p>
-  <div class="aviso"><b>Tem um CRM?</b> Então, na hora de conversar com o Claude, diga a ele <b>qual CRM você usa</b> (o nome do sistema). Ele guia você, passo a passo, para tirar a lista de lá ou ligar o CRM direto, sem você precisar entender de tecnologia. Se não tiver CRM, a planilha do Excel resolve.</div>
+  <section id="agente">
+    <div class="eyebrow">Item 4 · Automação completa</div>
+    <h2>O agente de IA que recupera a base</h2>
+    <p>Você não precisa programar nada. O agente é um conjunto de instruções que você cola numa conversa do Claude. Ele lê a sua lista de contatos antigos, escolhe quem chamar primeiro, escreve a mensagem de cada um e, no final, monta com você a rotina para isso acontecer toda semana, sem depender de ninguém lembrar.</p>
 
-  <h3>Passo 2 · Monte o agente</h3>
-  <p>Abra uma conversa nova no Claude e cole o comando abaixo (troque o que está entre colchetes). Depois, anexe ou cole a planilha.</p>
-<pre id="prompt">Você é o assistente de retomada de contatos da [nome da empresa].
+    <div class="degrau">
+      <div class="num">1</div>
+      <div>
+        <span class="tag">Preparar · a lista</span>
+        <h3>Deixe a sua lista em uma planilha do Excel</h3>
+        <p>Uma linha por contato, com estas colunas: <strong>nome · empresa · último assunto · quanto tempo faz que falaram · motivo de ter parado</strong>. Comece com 50 contatos.</p>
+        <div class="bloco"><p><strong>Tem um CRM?</strong> Então, na hora de conversar com o Claude, diga a ele <strong>qual CRM você usa</strong> (o nome do sistema). Ele guia você, passo a passo, para tirar a lista de lá ou ligar o CRM direto, sem você precisar entender de tecnologia. Se não tiver CRM, a planilha do Excel resolve.</p></div>
+      </div>
+    </div>
+
+    <div class="degrau">
+      <div class="num">2</div>
+      <div>
+        <span class="tag">Montar · o agente</span>
+        <h3>Cole o comando no Claude</h3>
+        <p>Abra uma conversa nova no Claude, cole o comando abaixo (troque o que está entre colchetes) e anexe ou cole a planilha.</p>
+        <div class="prompt">
+          <span class="tag">Comando 1 · retomada de contatos</span>
+<pre>Você é o assistente de retomada de contatos da [nome da empresa].
 Vou te mandar uma lista de leads antigos do nosso CRM. Para cada um:
 
 1. Dê uma nota de 1 a 3 de quão perto de comprar ele chegou
@@ -130,11 +208,20 @@ Vou te mandar uma lista de leads antigos do nosso CRM. Para cada um:
 No final, me entregue uma tabela com: nome, nota, mensagem.
 Nunca invente informação que não esteja na lista. Se faltar dado, pergunte.
 Nome do vendedor que assina: [nome do vendedor].</pre>
-  <button class="copiar" onclick="copiar('prompt',this)">Copiar comando</button>
+          <button class="btn copiar" type="button">Copiar comando</button>
+        </div>
+      </div>
+    </div>
 
-  <h3>Passo 3 · Peça ao Claude para montar a rotina automática</h3>
-  <p>Com as mensagens funcionando, cole este segundo comando na mesma conversa. Ele transforma o agente numa rotina semanal e guia você, um passo de cada vez.</p>
-<pre id="prompt2">Agora quero transformar isso em uma rotina automática, toda semana, para recuperar os leads parados da minha empresa.
+    <div class="degrau ult">
+      <div class="num">3</div>
+      <div>
+        <span class="tag">Automatizar · toda semana</span>
+        <h3>Peça ao Claude para montar a rotina automática</h3>
+        <p>Com as mensagens funcionando, cole este segundo comando na mesma conversa. Ele transforma o agente numa rotina semanal e guia você, um passo de cada vez.</p>
+        <div class="prompt">
+          <span class="tag">Comando 2 · rotina semanal</span>
+<pre>Agora quero transformar isso em uma rotina automática, toda semana, para recuperar os leads parados da minha empresa.
 
 Meu CRM é: [escreva o nome do seu CRM, ou "não tenho CRM, uso Excel"].
 
@@ -147,55 +234,68 @@ A rotina precisa:
 4. Registrar quem respondeu, quem pediu para não ser chamado e quem virou conversa.
 
 Diga qual é o caminho mais simples para o meu caso (planilha, conexão direta com o CRM ou uma ferramenta de automação), explique em uma frase por que, e comece pelo primeiro passo.</pre>
-  <button class="copiar" onclick="copiar('prompt2',this)">Copiar comando da rotina</button>
+          <button class="btn copiar" type="button">Copiar comando</button>
+        </div>
+      </div>
+    </div>
 
-  <div class="aviso"><b>Três cuidados antes de usar:</b><br>
-  • <b>Revise tudo antes de enviar.</b> O agente escreve, o seu time decide e manda. Não deixe a IA responder sozinha em nome da empresa.<br>
-  • <b>Privacidade:</b> mande ao Claude só o necessário (nome, empresa, assunto). Nada de documento, dado de saúde ou dado financeiro. E se a pessoa pedir para não ser chamada de novo, anote e respeite.<br>
-  • <b>Nem todo mundo vai conseguir aplicar tudo sozinho, e tudo bem.</b> O objetivo é mostrar que dá para usar IA para recuperar a base parada. Se travar em alguma parte, a conversa no final desta página serve para isso.</div>
-</section>
+    <div class="bloco"><p><strong>Revise tudo antes de enviar.</strong> O agente escreve, o seu time decide e manda. Não deixe a IA responder sozinha em nome da empresa.</p></div>
+    <div class="bloco"><p><strong>Cuide da privacidade.</strong> Mande ao Claude só o necessário (nome, empresa, assunto). Nada de documento, dado de saúde ou dado financeiro. Se a pessoa pedir para não ser chamada de novo, anote e respeite.</p></div>
+    <div class="bloco"><p><strong>Nem todo mundo vai conseguir aplicar tudo sozinho, e tudo bem.</strong> O objetivo é mostrar que dá para usar IA para recuperar a base parada. Se travar em alguma parte, a conversa no final desta página serve para isso.</p></div>
+    <p class="aviso"><strong>Quando não confiar na resposta:</strong> se a IA citar um dado que você não passou, ou inventar um detalhe sobre o contato, ignore essa parte e confira no seu CRM.</p>
+  </section>
 
-<section>
-  <h2><span class="n">5</span>Quanto tempo reservar por semana</h2>
-  <table>
-    <tr><th>Atividade</th><th>Tempo</th></tr>
-    <tr><td>Separar 50 contatos pelos 3 critérios</td><td>30 min (só na 1ª vez)</td></tr>
-    <tr><td>Gerar as mensagens com o agente e revisar</td><td>30 min</td></tr>
-    <tr><td>Enviar e responder quem voltar</td><td>1 hora</td></tr>
-    <tr><td><b>Total por semana, por lote de 50</b></td><td><b>cerca de 2 horas</b></td></tr>
-  </table>
-  <p class="rotulo">Estimativa de referência, ajuste ao ritmo do seu time.</p>
-</section>
+  <section id="tempo">
+    <div class="eyebrow">Item 5</div>
+    <h2>Quanto tempo reservar por semana</h2>
+    <div class="tbl"><table>
+      <tr><th>Atividade</th><th class="n">Tempo</th></tr>
+      <tr><td>Separar 50 contatos pelos 3 critérios</td><td class="n">30 min (só na 1ª vez)</td></tr>
+      <tr><td>Gerar as mensagens com o agente e revisar</td><td class="n">30 min</td></tr>
+      <tr><td>Enviar e responder quem voltar</td><td class="n">1 hora</td></tr>
+      <tr><td><strong>Total por semana, por lote de 50</strong></td><td class="n"><strong>cerca de 2 horas</strong></td></tr>
+    </table></div>
+    <p class="aviso" style="margin-top:12px">Estimativa de referência. Ajuste ao ritmo do seu time.</p>
+  </section>
 
-<div class="cta">
-  <h2>Quer fazer isso sem depender de lembrar?</h2>
-  <p>Resgatar a base é o primeiro passo. Se você quer implementar uma estrutura de aquisição previsível no seu negócio, com total clareza de todo o seu fluxo de vendas, do primeiro contato ao fechamento, marque um diagnóstico estratégico comigo.</p>
-  <a class="btn" id="cta" href="https://cal.com/maiky-miguel-rh5mjb/40min?overlayCalendar=true" target="_blank" rel="noopener">Marcar meu diagnóstico estratégico</a>
-  <p style="margin-top:14px;font-size:.9rem;opacity:.85">Conversa de 40 minutos, sem compromisso.</p>
-</div>
+  <div class="proximo">
+    <h2>O próximo passo</h2>
+    <p>Resgatar a base é o primeiro passo. Se você quer implementar uma estrutura de aquisição previsível no seu negócio, com total clareza de todo o seu fluxo de vendas, marque um diagnóstico estratégico comigo.</p>
+    <p style="margin-top:20px"><a class="btn grande" href="https://cal.com/maiky-miguel-rh5mjb/40min?overlayCalendar=true" target="_blank" rel="noopener">Marcar meu diagnóstico estratégico</a></p>
+  </div>
 
 </main>
 
-<footer><div class="wrap"><b>Maiky Miguel</b> · Os valores iniciais da calculadora e do exemplo são ilustrativos. Este material não promete resultado.</div></footer>
+<footer>
+  <div class="wrap">
+    <span class="assina">Maiky Miguel</span>
+    <p style="margin-top:12px">Material gratuito. Os números de exemplo são ilustrativos e não representam resultado de nenhum cliente. Este material não promete resultado.</p>
+  </div>
+</footer>
 
 <script>
+  const brl = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  const $ = id => document.getElementById(id);
   function calc(){
-    var b=+document.getElementById('base').value||0,
-        v=(+document.getElementById('volta').value||0)/100,
-        f=(+document.getElementById('fecha').value||0)/100,
-        t=+document.getElementById('ticket').value||0;
-    var conv=b*v, vend=conv*f, din=vend*t;
-    document.getElementById('r1').textContent=Math.round(conv*10)/10;
-    document.getElementById('r2').textContent=Math.round(vend*10)/10;
-    document.getElementById('r3').textContent='R$ '+din.toLocaleString('pt-BR',{maximumFractionDigits:0});
+    const b=+$('base').value||0, v=(+$('volta').value||0)/100, f=(+$('fecha').value||0)/100, t=+$('ticket').value||0;
+    const conv=b*v, vend=conv*f, din=vend*t;
+    $('r1').textContent = (Math.round(conv*10)/10).toLocaleString('pt-BR');
+    $('r2').textContent = (Math.round(vend*10)/10).toLocaleString('pt-BR');
+    $('r3').textContent = brl(din);
+    $('leitura').innerHTML = din
+      ? 'Com os seus números, a base parada vale cerca de <strong>' + brl(din) + '</strong>. Comece pelos primeiros 50 contatos e veja quantos respondem.'
+      : '';
   }
-  ['base','volta','fecha','ticket'].forEach(function(i){document.getElementById(i).addEventListener('input',calc)});
+  ['base','volta','fecha','ticket'].forEach(id => $(id).addEventListener('input', calc));
   calc();
-  function copiar(id,btn){
-    navigator.clipboard.writeText(document.getElementById(id).innerText).then(function(){
-      var o=btn.textContent;btn.textContent='Copiado!';setTimeout(function(){btn.textContent=o},1800);
-    });
-  }
+
+  document.querySelectorAll('.copiar').forEach(b => b.addEventListener('click', () => {
+    const pre = b.parentElement.querySelector('pre');
+    const label = b.textContent;
+    const ok = () => { b.textContent = 'Copiado'; setTimeout(() => b.textContent = label, 1800); };
+    const manual = () => { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selecionado: aperte Ctrl+C'; };
+    if (navigator.clipboard) navigator.clipboard.writeText(pre.innerText).then(ok).catch(manual); else manual();
+  }));
 </script>
 </body>
 </html>
